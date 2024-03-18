@@ -1,7 +1,7 @@
 require("colors");
 require("dotenv").config();
 require("express-async-errors");
-import express from "express";
+const express = require("express");
 import compression from "compression";
 import mongoSanitize from "express-mongo-sanitize";
 import { createServer } from "http";

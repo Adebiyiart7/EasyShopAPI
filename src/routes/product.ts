@@ -1,4 +1,4 @@
-import express from "express";
+const express = require("express");
 import add from "../controllers/product/add";
 import fetch from "../controllers/product/fetch";
 import deleteProduct from "../controllers/product/delete";
