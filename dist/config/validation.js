@@ -11,3 +11,4 @@ exports.productSchema = joi_1.default.object({
     name: joi_1.default.string().required().min(3).max(255).label("Product Name"),
     price: joi_1.default.string().required().label("Price"),
 });
+//# sourceMappingURL=validation.js.map

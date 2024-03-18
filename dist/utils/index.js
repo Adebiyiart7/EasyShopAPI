@@ -9,3 +9,4 @@ const apiResponse = (code, message, body) => {
     };
 };
 exports.apiResponse = apiResponse;
+//# sourceMappingURL=index.js.map

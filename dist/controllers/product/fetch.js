@@ -1,4 +1,13 @@
 "use strict";
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
@@ -11,9 +20,10 @@ const product_1 = __importDefault(require("../../models/product"));
  * @description   Fetches products by user id
  * @access        public
  */
-exports.default = (0, async_1.default)(async (req, res) => {
-    const products = await product_1.default.find({ userId: req.query.userId }).sort({
+exports.default = (0, async_1.default)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const products = yield product_1.default.find({ userId: req.query.userId }).sort({
         updatedAt: -1,
     });
     res.status(200).json((0, utils_1.apiResponse)(res.statusCode, "", products));
-});
+}));
+//# sourceMappingURL=fetch.js.map

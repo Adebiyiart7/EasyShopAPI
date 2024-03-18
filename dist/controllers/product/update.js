@@ -1,4 +1,13 @@
 "use strict";
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
@@ -15,7 +24,7 @@ const product_1 = __importDefault(require("../../models/product"));
  * @description   update product
  * @access        private
  */
-const update = (0, async_1.default)(async (req, res) => {
+const update = (0, async_1.default)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
     // Validate product
     const file = req.file;
     if (!file) {
@@ -28,11 +37,11 @@ const update = (0, async_1.default)(async (req, res) => {
         throw new Error(error.message);
     }
     // PROCESS IMAGE
-    const processimage = async () => {
+    const processimage = () => __awaiter(void 0, void 0, void 0, function* () {
         const filePath = path_1.default.posix.join("media", "products", `EASY_SHOP_${Math.random()
             .toString()
             .slice(2, 12)}_${Date.now()}.${file.mimetype.split("/").pop()}`);
-        const compressedImage = await (0, sharp_1.default)(file.buffer)
+        const compressedImage = yield (0, sharp_1.default)(file.buffer)
             .resize({ width: 600 })
             .toBuffer();
         // Write file to media folder
@@ -41,15 +50,12 @@ const update = (0, async_1.default)(async (req, res) => {
                 throw err;
         });
         return filePath;
-    };
-    const imageURL = await processimage();
-    await product_1.default.updateOne({ _id: req.query.id }, {
-        ...req.body,
-        price: JSON.parse(req.body.price),
-        image: imageURL,
     });
+    const imageURL = yield processimage();
+    yield product_1.default.updateOne({ _id: req.query.id }, Object.assign(Object.assign({}, req.body), { price: JSON.parse(req.body.price), image: imageURL }));
     return res
         .status(200)
         .json((0, utils_1.apiResponse)(res.statusCode, "Your item was successfully updated!", true));
-});
+}));
 exports.default = update;
+//# sourceMappingURL=update.js.map
