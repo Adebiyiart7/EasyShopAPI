@@ -9,7 +9,7 @@ import cors from "cors";
 
 import connectDatabase from "./config/db";
 import errorMiddleware from "./middleware/error";
-import productsRouter from "./routes/product";
+import products from "./routes/product";
 
 // Initialize Express app
 const app = express();
@@ -32,7 +32,7 @@ app.use(mongoSanitize());
 app.use(compression());
 app.use("/api/v1/media", express.static("media"));
 
-app.use("/api/v1/products", productsRouter);
+app.use("/api/v1/products", products);
 
 app.use(errorMiddleware);
 
