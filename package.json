@@ -1,11 +1,10 @@
 {
   "name": "easy-shop-api",
   "version": "1.0.0",
-  "type": "module",
   "description": "",
   "main": "src/index.ts",
   "scripts": {
-    "start": "ts-node src/index.js",
+    "start": "node dist/index.js",
     "build": "tsc",
     "dev": "nodemon"
   },
